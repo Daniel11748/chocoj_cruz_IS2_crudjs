@@ -3,6 +3,7 @@ require '../../models/Cliente.php';
 header('Content-Type: application/json; charset=UTF-8');
 
 $metodo = $_SERVER['REQUEST_METHOD'];
+
 $tipo = $_REQUEST['tipo'];
 
 // echo json_encode($_GET);
@@ -16,6 +17,18 @@ try {
 
                     $ejecucion = $cliente->guardar();
                     $mensaje = "Guardado correctamente";
+                    break;
+
+                case '2':
+
+                    $ejecucion = $cliente->modificar();
+                    $mensaje = "Modificado correctamente";
+                    break;
+
+                case '3':
+
+                    $ejecucion = $cliente->eliminar();
+                    $mensaje = "Se han eliminado los datos correctamente";
                     break;
 
                 default:
@@ -53,5 +66,3 @@ try {
 }
 
 exit;
-
-

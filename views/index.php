@@ -50,7 +50,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 table-responsive">
             <h2 class="text-center">Listado de Clientes</h2>
-            <table class="table table-bordered table-hover" id="tablaProductos">
+            <table class="table table-bordered table-hover" id="tablaClientes">
                 <thead>
                     <tr>
                         <th>No.</th>

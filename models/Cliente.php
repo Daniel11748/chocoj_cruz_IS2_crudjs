@@ -15,7 +15,7 @@ class Cliente extends Conexion
         $this->cli_id = $args['cli_id'] ?? null;
         $this->cli_nombre = $args['cli_nombre'] ?? '';
         $this->cli_apellido = $args['cli_apellido'] ?? '';
-        $this->cli_nit = $args['cli_nit'] ?? 0;
+        $this->cli_nit = $args['cli_nit'] ?? '';
         $this->cli_telefono = $args['cli_telefono'] ?? 0;
         $this->cli_situacion = $args['cli_situacion'] ?? '';
     }
@@ -36,19 +36,19 @@ class Cliente extends Conexion
         }
 
         if ($this->cli_apellido != '') {
-            $sql .= " and cli_apellido = '%$this->cli_apellido%' ";
+            $sql .= " and cli_apellido like '%$this->cli_apellido%' ";
         }
 
         if ($this->cli_id != null) {
-            $sql .= " and cli_id = '%$this->cli_id%' ";
+            $sql .= " and cli_id = '$this->cli_id' ";
         }
 
         if ($this->cli_nit != null) {
-            $sql .= " and cli_nit = '%$this->cli_nit%' ";
+            $sql .= " and cli_nit = '$this->cli_nit' ";
         }
 
         if ($this->cli_telefono != null) {
-            $sql .= " and cli_telefono = '%$this->cli_telefono%' ";
+            $sql .= " and cli_telefono = '$this->cli_telefono' ";
         }
 
         $resultado = self::servir($sql);
@@ -58,10 +58,10 @@ class Cliente extends Conexion
     public function modificar()
     {
         $sql = "UPDATE clientes SET cli_nombre = '$this->cli_nombre', cli_apellido = '$this->cli_apellido', cli_nit = '$this->cli_nit', cli_telefono = $this->cli_telefono  where cli_id = $this->cli_id";
-
         $resultado = self::ejecutar($sql);
         return $resultado;
     }
+//CUANDO SE USA UN UPDATE SIEMPRE SE DEBE VERIFICAR QUE LLEVE EL "WHERE" EN EL SQL PARA NO MODIFICAR TODOS LOS DARTOS DE NUESTRA TABLA.
 
     public function eliminar()
     {
